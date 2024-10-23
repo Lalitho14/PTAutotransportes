@@ -1,4 +1,6 @@
-package Main;
+//Autor: Jesus Eduardo Hernandez Bravo
+//Git: https://github.com/Lalitho14/PTAutotransportes/
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,11 +16,12 @@ public class MainGUI extends Application {
   public void start(Stage stage) throws Exception {
     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GUI/DataBaseSetUp.fxml")));
     stage.setTitle("Autotransportes");
-    stage.setScene(new Scene(root, 800, 600));
-    stage.setWidth(800);
-    stage.setHeight(600);
-    stage.setMinWidth(800);
-    stage.setMinHeight(600);
+    stage.setScene(new Scene(root, 600, 400));
+    stage.setWidth(600);
+    stage.setHeight(400);
+    stage.setMinWidth(600);
+    stage.setMinHeight(400);
+    stage.resizableProperty().setValue(Boolean.FALSE);
     stage.show();
   }
 }

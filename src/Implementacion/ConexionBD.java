@@ -1,15 +1,14 @@
 //Autor: Jesus Eduardo Hernandez Bravo
-//Git: https://github.com/Lalitho14
+//Git: https://github.com/Lalitho14/PTAutotransportes/
 
-package Main;
-import GUI.DBSetup;
+package Implementacion;
 
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConexionBD {
-  private Connection connection;//Conector a base de datos
+  private Connection connection = null;//Conector a base de datos
   private String usr;//Usuario a base de datos
   private String pwd;//Contraseña a base de datos
   private String db;//Base de datos a usar
@@ -30,10 +29,10 @@ public class ConexionBD {
     try{
       Class.forName("com.mysql.cj.jdbc.Driver");
       this.connection = DriverManager.getConnection(direccion,usr,pwd);
-      JOptionPane.showMessageDialog(null, "Conexion exitosa");
+      JOptionPane.showMessageDialog(null,"Conexion", "Conexion exitosa", JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, "Error al conectarse a la base: "+e.getMessage());
-      return  null;
+      JOptionPane.showMessageDialog(null, "Error al conectarse a la base: "+e.getMessage(), "Conexion", JOptionPane.ERROR_MESSAGE);
+      this.connection = null;
     }
     return connection;
   }
