@@ -163,7 +163,7 @@ public class ConsultasJ {
       cst.setInt(10, flete.getDestino().getIdCiudad());
       cst.setInt(11, flete.getCliente().getId());
       cst.execute();
-      JOptionPane.showMessageDialog(null, "Se registro cliente con exito.","Autotransportes - BD Cliente",JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(null, "Se registro flete con exito.","Autotransportes - BD Flete",JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception e) {
       JOptionPane.showMessageDialog(null, "Error al insertar registros  : "+e.getMessage(),"Autotransportes - BD Cliente",JOptionPane.ERROR_MESSAGE);
     }

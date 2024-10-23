@@ -290,6 +290,10 @@ public class MainPanel {
     cliente_Opcion.getItems().clear();
     ArrayList<Cliente> clientes = consultasJ.MostrarClientes(this.conexion);
     cliente_Opcion.getItems().addAll(clientes);
+
+    rfc_txt.setText("");
+    nom_raz_soc_txt.setText("");
+    direccion_txt.setText("");
   }
 
   @FXML
