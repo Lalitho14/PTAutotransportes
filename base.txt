@@ -1,0 +1,51 @@
+DROP DATABASE IF EXISTS PT_Autotransportes;
+
+CREATE DATABASE PT_Autotransportes;
+
+USE PT_Autotransportes;
+
+DROP TABLE IF EXISTS Cliente;
+CREATE TABLE Cliente(
+  idCliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  rfc VARCHAR(45) NOT NULL,
+  nombre_raz_soc VARCHAR(60) NOT NULL,
+  direccion VARCHAR(200) NOT NULL
+);
+
+DROP TABLE IF EXISTS Ciudad;
+CREATE TABLE Ciudad(
+  idCiudad INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(45) NOT NULL
+);
+
+DROP TABLE IF EXISTS Flete;
+CREATE TABLE Flete(
+  idFlete INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  costo DOUBLE NOT NULL,
+  descuento DOUBLE,
+  total DOUBLE NOT NULL,
+  volumen DOUBLE NOT NULL,
+  peso DOUBLE NOT NULL,
+  redondo BOOLEAN DEFAULT FALSE NOT NULL,
+  distancia DOUBLE NOT NULL,
+  fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+  pago ENUM('Pagado','Pendiente') NOT NULL,
+  origen INT NOT NULL,
+  destino INT NOT NULL,
+  cliente INT NOT NULL,
+  FOREIGN KEY(origen) REFERENCES Ciudad(idCiudad) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(destino) REFERENCES Ciudad(idCiudad) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(cliente) REFERENCES Cliente(idCliente) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO Ciudad(nombre) VALUES('Puebla');
+INSERT INTO Ciudad(nombre) VALUES('Veracruz');
+INSERT INTO Ciudad(nombre) VALUES('DF');
+INSERT INTO Ciudad(nombre) VALUES('Tlaxcala');
+
+INSERT INTO Cliente(rfc, nombre_raz_soc, direccion) VALUES('RFC010203AAA', 'PEPSICOL S.A. de C.V.', 'Calle 01 Col. Madero');
+INSERT INTO Cliente(rfc, nombre_raz_soc, direccion) VALUES('RFC010203BBB', 'ZAPATERIA S.A. de C.V.', 'Calle 02 Col. Francisco');
+INSERT INTO Cliente(rfc, nombre_raz_soc, direccion) VALUES('RFC010203CCC', 'MAQUILADORA S.A. de C.V.', 'Calle 03 Col. Zapata');
+
+INSERT INTO Flete(costo, descuento, total, volumen, peso, redondo, distancia, pago, origen, destino, cliente) VALUES(10000, 1000, 9000, 400, 200, 1, 3000, 'Pendiente', 1, 2, 1);
+INSERT INTO Flete(costo, descuento, total, volumen, peso, redondo, distancia, pago, origen, destino, cliente) VALUES(20000, 0, 20000, 800, 300, 0, 5000, 'Pendiente', 2, 3, 3);
